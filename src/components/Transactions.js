@@ -9,15 +9,17 @@ class Transactions extends Component {
         }
     }
 
+    deleteTransaction = (amount, vendor) => {
+        this.props.deleteTransaction(amount, vendor)
+    }
+
     render() {
         const transactions = this.props.data
-        // console.log(transactions)
-
 
         return (
             <div>
                 {transactions.map(transaction =>
-                    <Transaction key={transaction.vendor + transaction.category} transaction={transaction} />
+                    <Transaction key={transaction.vendor + transaction.category} transaction={transaction} deleteTransaction={this.props.deleteTransaction}/>
                 )}
             </div>
         )
