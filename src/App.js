@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Operations from "./components/Operations"
 import Transactions from "./components/Transactions"
+import Category from "./components/Categories"
 import axios from "axios"
 
 class App extends Component {
@@ -63,7 +64,7 @@ class App extends Component {
   render() {
     let amount = 0
     this.state.balanceData.map(dummy => amount += dummy.amount)
-
+    
     return (
       <Router>
         <div>
@@ -77,6 +78,7 @@ class App extends Component {
           </div>
           <Route path="/transactions" exact render={({ match }) => <Transactions match={match} data={this.state.balanceData} deleteTransaction={this.deleteThisTransaction} />} />
           <Route path="/operations" exact render={({ match }) => <Operations match={match} data={this.state.balanceData} transaction={this.transaction} />} />
+          <Route path="/transactions/:category" exact render={({match}) => <Category match={match} data={this.state.balanceData} transaction={this.transaction}/>} />
         </div>
       </Router>
     )

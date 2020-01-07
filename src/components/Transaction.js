@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { FaMinusCircle } from "react-icons/fa"
 
 class Transaction extends Component {
     constructor() {
@@ -19,9 +19,9 @@ class Transaction extends Component {
         
         return (
             <div key={transaction.vendor + transaction.category} className="transaction">
-                <span className="delete-transaction" onClick={this.deleteTransaction}>Delete Transaction</span>
+                <span className="delete-transaction" onClick={this.deleteTransaction}><FaMinusCircle /></span>
                 <h5>{transaction.vendor}</h5>
-                <h6>{transaction.amount}</h6>
+                <h6>{transaction.amount} NIS</h6>
                 <h6>{transaction.category}</h6>
             </div>
         )
