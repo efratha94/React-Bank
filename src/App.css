@@ -38,6 +38,15 @@
     transform: rotate(360deg);
   }
 }
+@keyframes delete-button {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(15deg);
+  }
+}
+
 #root{
   font-family: 'Share', cursive;
   letter-spacing: 0.5px;
@@ -90,8 +99,13 @@
 }
 
 .delete-transaction{
-  color:red
+  color:red;
+  
 }
+/* .delete-transaction:hover{
+  animation: delete-button infinite 2s linear ;
+} */
+
 
 #operations-page{
   height: 50vh;
@@ -156,6 +170,11 @@ button{
 }
 .link{
   text-decoration: none;
+  color: #512DA8
+}
+
+.link:hover{
+  color: #f44336
 }
 input:focus{
   outline: none
