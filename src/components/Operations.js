@@ -36,7 +36,7 @@ class Operations extends Component{
             <div id="operation-inputs">
                 <input placeholder="Amount" type="number" name="amount" onChange={this.handleInput} value={this.state.amount}/><br></br>
                 <input placeholder="Vendor" type="text" name="vendor" onChange={this.handleInput} value={this.state.vendor}/><br></br>
-                <input placeholder="Cateory" type="text" name="category" onChange={this.handleInput} value={this.state.category}/><br></br>
+                <input placeholder="Cateory" type="text" name="category" onChange={this.handleInput} value={this.state.category} /><br></br>
             </div>
             <div id="operation-buttons">
                 <button type="submit" onClick={this.transaction} className="deposit">Deposit</button>

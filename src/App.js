@@ -19,7 +19,7 @@ class App extends Component {
   async componentDidMount(){
     const transactionsInDB = await this.getTransactions()
     let dataToUpdate = [...this.state.balanceData]
-    let interestingTransactions = transactionsInDB.data.map(transaction => {dataToUpdate.push(transaction)})
+    transactionsInDB.data.map(transaction => {dataToUpdate.push(transaction)})
     this.setState({
       balanceData: dataToUpdate
     })
@@ -40,7 +40,6 @@ class App extends Component {
 
   deleteTransaction = async (idToDelete) => {
     return axios.delete("http://localhost:3002/transaction", {data: {id: idToDelete}})
-
   }
   
   deleteThisTransaction = async (amount, vendor) => {
