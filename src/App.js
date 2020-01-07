@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Operations from "./components/Operations"
 import Transaction from "./components/Transaction"
 import Transactions from "./components/Transactions"
+// import api from "./api/api"
+// import mongoose from "mongoose"
+import axios from "axios"
+// import bodyParser from "body-parser"
 
 class App extends Component {
   constructor() {
@@ -15,6 +19,15 @@ class App extends Component {
         { amount: -98, vendor: "La Baguetterie", category: "Food" }
       ]
     }
+  }
+
+  async getTransactions(){
+    return axios.get("http://localhost:3002/transactions")
+  }
+
+  async componentDidMount(){
+    const something = await this.getTransactions()
+    console.log(something)
   }
 
   transaction = (object) => {
