@@ -15,27 +15,22 @@ class Transactions extends Component {
 
     render() {
         const transactions = [...this.props.data]
-        const categories = []
-        let categoryAmount = 0
+        const categories = {}
         transactions.map(a => {
-            if (!categories.includes(a.category)) {
-                categories.push(a.category)
+            if (!categories.hasOwnProperty(a.category)) {
+                categories[a.category] = a.amount
+            } else {
+                categories[a.category] += a.amount
             }
-
         })
 
         return (
             <div id="transactions-page">
                 <div id="transactions-by-category">
-                    {categories.map(category =>
+                    {Object.keys(categories).map(category =>
                         <div>
                             <Link to={`/transactions/${category}`} className="link" key={category}><h3 className="category-link">{category}</h3></Link>
-                            {transactions.map(transaction => {
-                                if (transaction.category === category) {
-                                    categoryAmount += transaction.amount
-                                }
-                            })}
-                            <h5 className="total-category-sum">{categoryAmount} NIS</h5>
+                            <h5 className="total-category-sum">{categories[category]} NIS</h5>
                         </div>
                     )}
                 </div>
