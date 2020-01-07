@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Operations from "./components/Operations"
-import Transaction from "./components/Transaction"
 import Transactions from "./components/Transactions"
-// import api from "./api/api"
-// import mongoose from "mongoose"
 import axios from "axios"
-// import bodyParser from "body-parser"
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      dummyData: [
-        { amount: 3200, vendor: "Elevation", category: "Salary" },
-        { amount: -7, vendor: "Runescape", category: "Entertainment" },
-        { amount: -20, vendor: "Subway", category: "Food" },
-        { amount: -98, vendor: "La Baguetterie", category: "Food" }
-      ]
+      balanceData: []
     }
   }
 
@@ -26,35 +17,53 @@ class App extends Component {
   }
 
   async componentDidMount(){
-    const something = await this.getTransactions()
-    console.log(something)
-  }
-
-  transaction = (object) => {
-    let allTransactions = [...this.state.dummyData]
-    allTransactions.push(object)
+    const transactionsInDB = await this.getTransactions()
+    let dataToUpdate = [...this.state.balanceData]
+    let interestingTransactions = transactionsInDB.data.map(transaction => {dataToUpdate.push(transaction)})
     this.setState({
-      dummyData: allTransactions
+      balanceData: dataToUpdate
     })
   }
 
-  deleteTransaction = (amount, vendor) => {
-    let amountDeleted = amount
-    let vendorDeleted = vendor
-    let allTransactions = [...this.state.dummyData]
+  async newOperations(transactionToSave){
+    return axios.post("http://localhost:3002/transaction", transactionToSave)
+  }
+
+  transaction = async (object) => {
+    const TransactionsToSaveToDB = await this.newOperations(object)
+    let allTransactions = [...this.state.balanceData]
+    allTransactions.push(TransactionsToSaveToDB.data)
+    this.setState({
+      balanceData: allTransactions
+    })
+  }
+
+  deleteTransaction = async (idToDelete) => {
+    return axios.delete("http://localhost:3002/transaction", {data: {id: idToDelete}})
+
+  }
+  
+  deleteThisTransaction = async (amount, vendor) => {
+    const amountDeleted = amount
+    const vendorDeleted = vendor
+    let allTransactions = [...this.state.balanceData]
     let transactionToDelete = allTransactions.find(transaction => 
       transaction.vendor === vendorDeleted && transaction.amount === amountDeleted
     )
-    let indexOfTransactionToDelete = allTransactions.indexOf(transactionToDelete)
-    allTransactions.splice(indexOfTransactionToDelete, 1)
+    let idToDelete = transactionToDelete._id
+    let deleteThis = await this.deleteTransaction(idToDelete)
+
+    const newData = allTransactions.find(deleted => deleted._id === deleteThis.data)
+    const indexToDelete = allTransactions.indexOf(newData)
+    allTransactions.splice(indexToDelete, 1)
     this.setState({
-      dummyData: allTransactions
+      balanceData: allTransactions
     })
   }
 
   render() {
     let amount = 0
-    this.state.dummyData.map(dummy => amount += dummy.amount)
+    this.state.balanceData.map(dummy => amount += dummy.amount)
 
     return (
       <Router>
@@ -67,8 +76,8 @@ class App extends Component {
           <div id="currentBalance">
             Total Balance: {amount}
           </div>
-          <Route path="/transactions" exact render={({ match }) => <Transactions match={match} data={this.state.dummyData} deleteTransaction={this.deleteTransaction} />} />
-          <Route path="/operations" exact render={({ match }) => <Operations match={match} data={this.state.dummyData} transaction={this.transaction} />} />
+          <Route path="/transactions" exact render={({ match }) => <Transactions match={match} data={this.state.balanceData} deleteTransaction={this.deleteThisTransaction} />} />
+          <Route path="/operations" exact render={({ match }) => <Operations match={match} data={this.state.balanceData} transaction={this.transaction} />} />
         </div>
       </Router>
     )
