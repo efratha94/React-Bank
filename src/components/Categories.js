@@ -21,9 +21,11 @@ class Category extends Component {
             <div className="data-from-each-category">
                 <h2 id="expense-category">{category}</h2>
                 {dataByCategory.map(data =>
-                    <div className="data-for-each-transaction-in-category" key={data.vendor + data.category}>
-                        <h4>{data.amount} NIS</h4>
-                        <h6>{data.vendor}</h6>
+                    <div className="data-for-each-transaction-in-category">
+                        <div key={data.vendor + data.category}>
+                            {data.amount > 0 ? <h4 className="income">{data.amount} NIS</h4> : <h4 className="expense">{data.amount} NIS</h4>}
+                            <h6>{data.vendor}</h6>
+                        </div>
                     </div>
                 )}
             </div>

@@ -68,15 +68,14 @@ class App extends Component {
     
     return (
       <Router>
-        <div>
+        <div id="container">
           <div id="main-links">
             <Link to="/" className="link">Home</Link>
             <Link to="/transactions" className="link">Transactions</Link>
             <Link to="/operations" className="link">Operations</Link>
           </div>
-          <div id="currentBalance">
-            Total Balance: {amount}
-          </div>
+          {amount > 500 ? <div id="currentBalance" className="income">Total Balance: {amount}</div> : <div id="currentBalance" className="expense">Total Balance: {amount}</div>}
+          
           <Route path="/transactions" exact render={({ match }) => <Transactions match={match} data={this.state.balanceData} deleteTransaction={this.deleteThisTransaction} />} />
           <Route path="/operations" exact render={({ match }) => <Operations match={match} data={this.state.balanceData} transaction={this.transaction} />} />
           <Route path="/transactions/:category" exact render={({match}) => <Category match={match} data={this.state.balanceData} transaction={this.transaction}/>} />

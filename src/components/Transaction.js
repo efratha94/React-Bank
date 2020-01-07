@@ -20,9 +20,9 @@ class Transaction extends Component {
         return (
             <div key={transaction.vendor + transaction.category} className="transaction">
                 <span className="delete-transaction" onClick={this.deleteTransaction}><FaMinusCircle /></span>
-                <h5>{transaction.vendor}</h5>
-                <h6>{transaction.amount} NIS</h6>
-                <h6>{transaction.category}</h6>
+                <h5 className="detailed-transaction">{transaction.vendor}</h5>
+                {transaction.amount > 0 ? <h6 className="income detailed-transaction">{transaction.amount} NIS</h6> : <h6 className="expense detailed-transaction">{transaction.amount} NIS</h6>}
+                <h6 className="detailed-transaction">{transaction.category}</h6>
             </div>
         )
     }

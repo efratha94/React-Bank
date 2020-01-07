@@ -25,7 +25,7 @@ class Transactions extends Component {
         })
 
         return (
-            <div className="transactions-page">
+            <div id="transactions-page">
                 <div id="transactions-by-category">
                     {categories.map(category =>
                         <div>
@@ -35,7 +35,7 @@ class Transactions extends Component {
                                     categoryAmount += transaction.amount
                                 }
                             })}
-                            <h5>{categoryAmount}</h5>
+                            <h5 className="total-category-sum">{categoryAmount} NIS</h5>
                         </div>
                     )}
                 </div>

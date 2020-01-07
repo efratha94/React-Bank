@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Share&display=swap');
+
 .App {
   text-align: center;
 }
@@ -36,23 +38,128 @@
     transform: rotate(360deg);
   }
 }
+#root{
+  font-family: 'Share', cursive;
+  letter-spacing: 0.5px;
+}
 
-.transactions-page{
+#transactions-page{
   display: grid;
   height: 100vh;
 }
 
+#currentBalance{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  font-size: 28px;
+  align-self: center;
+}
+
+#main-links{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  margin-top: 5px;
+}
+
 #transactions-by-category{
   display:grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  margin-bottom: 30px;
 }
+
+.detailed-transaction{
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 #all-transactions-seperate{
   display: grid;
 }
+
 .transaction{
   display: grid;
   grid-template-columns: 10% 30% 20% 20%;
   justify-content: center;
   justify-items: center;
   align-items: center;
+}
+
+.delete-transaction{
+  color:red
+}
+
+#operations-page{
+  height: 50vh;
+  justify-items: center;
+  display: grid;
+  grid-template-rows: 80% 20%;
+}
+
+#operation-inputs{
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 5px;
+  width: 50%;
+  justify-self: center;
+}
+.category-link{
+  font-size: 20px;
+}
+.total-category-sum{
+  font-size: 16px;
+}
+input{
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'Share', cursive;
+  font-size: 15px;
+}
+
+#operation-buttons{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-self: center;
+  align-self: center;
+  grid-gap: 3px;
+  
+}
+button{
+  border-radius: 5px;
+  padding: 7px;
+  width: 85px;
+  font-family: 'Share', cursive;
+  letter-spacing: 1px;
+
+}
+
+.income{
+  color: green
+}
+.expense{
+  color: red
+}
+
+.data-for-each-transaction-in-category{
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  justify-items: center;
+  text-align: center;
+}
+
+#expense-category{
+  text-align: center;
+}
+.link{
+  text-decoration: none;
+}
+input:focus{
+  outline: none
+}
+button:focus{
+  outline: none;
 }

@@ -32,11 +32,11 @@ class Operations extends Component{
 
     render(){
         return (
-            <div>
+            <div id="operations-page">
             <div id="operation-inputs">
-                <input placeholder="Amount" type="number" name="amount" onChange={this.handleInput} value={this.state.amount}/><br></br>
-                <input placeholder="Vendor" type="text" name="vendor" onChange={this.handleInput} value={this.state.vendor}/><br></br>
-                <input placeholder="Cateory" type="text" name="category" onChange={this.handleInput} value={this.state.category} /><br></br>
+                <input placeholder="Amount" type="number" name="amount" onChange={this.handleInput} value={this.state.amount} required="required"/>
+                <input placeholder="Vendor" type="text" name="vendor" onChange={this.handleInput} value={this.state.vendor} required="required"/>
+                <input placeholder="Cateory" type="text" name="category" onChange={this.handleInput} value={this.state.category} required="required"/>
             </div>
             <div id="operation-buttons">
             <Link to="/transactions" className="link"><button type="submit" onClick={this.transaction} className="deposit">Deposit</button></Link>
