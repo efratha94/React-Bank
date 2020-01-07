@@ -14,6 +14,7 @@ class Transactions extends Component {
     }
 
     render() {
+        let randomNum = Math.floor(Math.random() * 1245) + 1
         const transactions = [...this.props.data]
         const categories = {}
         transactions.map(a => {
@@ -28,15 +29,15 @@ class Transactions extends Component {
             <div id="transactions-page">
                 <div id="transactions-by-category">
                     {Object.keys(categories).map(category =>
-                        <div>
-                            <Link to={`/transactions/${category}`} className="link" key={category}><h3 className="category-link">{category}</h3></Link>
+                        <div key={category+randomNum}>
+                            <Link to={`/transactions/${category}`} className="link" key={category+randomNum}><h3 className="category-link">{category}</h3></Link>
                             <h5 className="total-category-sum">{categories[category]} NIS</h5>
                         </div>
                     )}
                 </div>
                 <div id="all-transactions-seperate">
                     {transactions.map(transaction =>
-                        <Transaction key={transaction.vendor + transaction.category} transaction={transaction} deleteTransaction={this.props.deleteTransaction} />
+                        <Transaction key={transaction.vendor + transaction.category + transaction.amount} transaction={transaction} deleteTransaction={this.props.deleteTransaction} />
                     )}
 
                 </div>
