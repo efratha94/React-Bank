@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.transactions-page{
+  display: grid;
+  height: 100vh;
+}
+
+#transactions-by-category{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+#all-transactions-seperate{
+  display: grid;
+}
+.transaction{
+  display: grid;
+  grid-template-columns: 10% 30% 20% 20%;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}

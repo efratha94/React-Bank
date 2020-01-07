@@ -29,7 +29,7 @@ class Transactions extends Component {
                 <div id="transactions-by-category">
                     {categories.map(category =>
                         <div>
-                            <Link to={`/transactions/${category}`} className="link" key={category}><h3>{category}</h3></Link>
+                            <Link to={`/transactions/${category}`} className="link" key={category}><h3 className="category-link">{category}</h3></Link>
                             {transactions.map(transaction => {
                                 if (transaction.category === category) {
                                     categoryAmount += transaction.amount

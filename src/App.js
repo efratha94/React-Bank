@@ -4,6 +4,7 @@ import Operations from "./components/Operations"
 import Transactions from "./components/Transactions"
 import Category from "./components/Categories"
 import axios from "axios"
+import "./App.css"
 
 class App extends Component {
   constructor() {
