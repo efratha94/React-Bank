@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+
 class Operations extends Component{
     constructor(){
         super();
@@ -39,7 +40,7 @@ class Operations extends Component{
                 <input placeholder="Cateory" type="text" name="category" onChange={this.handleInput} value={this.state.category} required="required"/>
             </div>
             <div id="operation-buttons">
-            <Link to="/transactions" className="link"><button type="submit" onClick={this.transaction} className="deposit">Deposit</button></Link>
+            <Link to="/transactions" className="link"><button type="submit" onClick={this.transaction} className="deposit">Deposit</button> </Link>
             <Link to="/transactions" className="link"><button type="submit" onClick={this.transaction} className="withdraw">Withdraw</button></Link>
             </div>
             </div>

@@ -6,6 +6,7 @@ import Category from "./components/Categories"
 import axios from "axios"
 import "./App.css"
 
+
 class App extends Component {
   constructor() {
     super();
@@ -63,8 +64,9 @@ class App extends Component {
   }
 
   render() {
+    let balanceData = [...this.state.balanceData]
     let amount = 0
-    this.state.balanceData.map(dummy => amount += dummy.amount)
+    balanceData.map(dummy => amount += dummy.amount)
     
     return (
       <Router>
@@ -75,7 +77,6 @@ class App extends Component {
             <Link to="/operations" className="link">Operations</Link>
           </div>
           {amount > 500 ? <div id="currentBalance" className="income">Total Balance: {amount}</div> : <div id="currentBalance" className="expense">Total Balance: {amount}</div>}
-          
           <Route path="/transactions" exact render={({ match }) => <Transactions match={match} data={this.state.balanceData} deleteTransaction={this.deleteThisTransaction} />} />
           <Route path="/operations" exact render={({ match }) => <Operations match={match} data={this.state.balanceData} transaction={this.transaction} />} />
           <Route path="/transactions/:category" exact render={({match}) => <Category match={match} data={this.state.balanceData} transaction={this.transaction}/>} />

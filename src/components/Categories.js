@@ -24,7 +24,7 @@ class Category extends Component {
                     <div className="data-for-each-transaction-in-category">
                         <div key={data.vendor + data.category}>
                             {data.amount > 0 ? <h4 className="income">{data.amount} NIS</h4> : <h4 className="expense">{data.amount} NIS</h4>}
-                            <h6>{data.vendor}</h6>
+                            <h5>{data.vendor}</h5>
                         </div>
                     </div>
                 )}
